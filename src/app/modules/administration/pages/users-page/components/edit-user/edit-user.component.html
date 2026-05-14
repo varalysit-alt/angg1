@@ -1,0 +1,118 @@
+<header>Редактировать пользователя</header>
+<main>
+  <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+    <div>
+      <input
+        type="text"
+        placeholder="Логин"
+        formControlName="userLogin"
+        [ngClass]="{ invalid: getFieldErrors('userLogin') }"
+      />
+      <div *ngIf="getFieldErrors('userLogin')">
+        <small *ngIf="getFieldErrors('userLogin')?.['required']">
+          Логин обязателен
+        </small>
+        <small *ngIf="getFieldErrors('userLogin')?.['minlength']">
+          Логин должен быть не менее 2 символов
+        </small>
+      </div>
+    </div>
+    <div>
+      <input
+        type="password"
+        placeholder="Пароль"
+        formControlName="userPassword"
+        [ngClass]="{ invalid: getFieldErrors('userPassword') }"
+      />
+      <div *ngIf="getFieldErrors('userPassword')">
+        <small *ngIf="getFieldErrors('userPassword')?.['required']">
+          Пароль обязателен
+        </small>
+      </div>
+    </div>
+    <div>
+      <input 
+      type="checkbox"
+      formControlName="userEnabled"
+      >
+    </div>
+    <div>
+      <input
+        type="text"
+        placeholder="Имя"
+        formControlName="userFirstName"
+        [ngClass]="{ invalid: getFieldErrors('userFirstName') }"
+      />
+      <div *ngIf="getFieldErrors('userFirstName')">
+        <small *ngIf="getFieldErrors('userFirstName')?.['required']">
+          Имя обязательно
+        </small>
+      </div>
+    </div>
+    <div>
+      <input
+        type="text"
+        placeholder="Фамилия"
+        formControlName="userLastName"
+        [ngClass]="{ invalid: getFieldErrors('userLastName') }"
+      />
+      <div *ngIf="getFieldErrors('userLastName')">
+        <small *ngIf="getFieldErrors('userLastName')?.['required']">
+          Фамилия обязательна
+        </small>
+      </div>
+    </div>
+    <div>
+      <input
+        type="text"
+        placeholder="Отчество"
+        formControlName="userPatronymic"
+        [ngClass]="{ invalid: getFieldErrors('userPatronymic') }"
+      />
+    </div>
+    <div>
+      <input
+        type="text"
+        placeholder="Дата регистрации"
+        formControlName="userCreateDate"
+        [ngClass]="{ invalid: getFieldErrors('userCreateDate') }"
+      />
+      <div *ngIf="getFieldErrors('userCreateDate')">
+        <small *ngIf="getFieldErrors('userCreateDate')?.['required']">
+          Дата регистрации обязательна
+        </small>
+      </div>
+    </div>
+    <div>
+      <input
+        type="date"
+        placeholder="Дата рождения"
+        formControlName="userBirthday"
+        [ngClass]="{ invalid: getFieldErrors('userBirthday') }"
+      />
+      <div *ngIf="getFieldErrors('userBirthday')">
+        <small *ngIf="getFieldErrors('userBirthday')?.['required']">
+          Дата рождения обязательна
+        </small>
+      </div>
+    </div>
+    <button type="submit">Обновить пользователя</button>
+  </form>
+  <form (ngSubmit)="onSubmitRoles()">
+    <label>
+      <input
+        type="checkbox"
+        [checked]="isAdmin"
+        (change)="onRoleChange('admin', $event)">
+      Админ
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        [checked]="isStudent"
+        (change)="onRoleChange('student', $event)">
+      Студент
+    </label>
+    <button type="submit">Сохранить роли</button>
+  </form>
+</main>

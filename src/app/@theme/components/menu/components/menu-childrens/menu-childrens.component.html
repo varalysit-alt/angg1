@@ -1,0 +1,42 @@
+<div class="submenu">
+  <ul>
+    <li
+      class="submenu__item"
+      *ngFor="let subItem of menuChildrenItems"
+      [ngClass]="{ 'submenu__item--show-children': subItem.showSubMenu }"
+      tabindex="0"
+      
+      [routerLink]="subItem.itemLink !== 'NULL' ? subItem.itemLink : null"
+    >
+      <span class="submenu__wrapper">
+        <span
+          class="submenu__icon"
+          [innerHTML]="getSafeHtml(subItem.icon)"
+        ></span>
+        <span
+          class="submenu__text"
+          [ngClass]="sidebarHidden ? 'submenu__text--hidden' : ''"
+        >
+          {{ subItem.itemName }}
+        </span>
+        <span
+          class="submenu__toggle"
+          *ngIf="menuService.getChildrenItems(subItem).length > 0 && !sidebarHidden"
+          (click)="toggleSubMenu(subItem)"
+          [ngClass]="sidebarHidden ? 'submenu__toggle--hidden' : ''"
+        >
+          {{ subItem.showSubMenu ? "-" : "+" }}
+        </span>
+      </span>
+      <div
+        class="submenu__children"
+        *ngIf="subItem.showSubMenu && !sidebarHidden"
+      >
+        <app-menu-childrens
+          [parentItem]="subItem"
+          [sidebarHidden]="sidebarHidden"
+        ></app-menu-childrens>
+      </div>
+    </li>
+  </ul>
+</div>

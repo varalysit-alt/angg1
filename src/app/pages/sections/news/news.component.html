@@ -1,0 +1,23 @@
+<h1 class="title">Новости</h1>
+
+<div class="news">
+    <div >
+        <div *ngFor="let news of newItems" class="newsBlock">
+            <div *ngIf="news.id" class="newsItem">
+                <div class="newsName">
+                    <h2>{{ news.title }}</h2>
+                </div>
+                <p class="newsDescription" >{{ news.description }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- <form >
+        <input type="text" class="newsButton">
+        <input type="text" class="newsButton">
+        <input type="text" class="newsButton">
+        <input type="text" class="newsButton">
+        <button>
+            Добавить
+        </button>
+    </form> -->
+</div>

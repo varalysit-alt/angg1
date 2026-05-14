@@ -1,0 +1,23 @@
+<div class="users-page__header">
+  <p>Пользователи</p>
+  <button (click)="onAddUserBtn()">Добавить пользователя</button>
+</div>
+
+<div class="users-page__content">
+  <div class="users-page__table-wrapper">
+    <app-table
+      [columnHeaders]="['id', 'Логин', 'Пароль', 'Enabled', 'Имя', 'Фамилия', 'Отчество', 'Дата регистрации', 'Дата рождения']"
+      [data]="users"
+      (rowClick)="onUserSelect($event)">
+    </app-table>
+  </div>
+
+  <aside class="users-page__aside">
+    <app-add-user-form *ngIf="asideIndex == 1" />
+    <app-edit-user
+      *ngIf="asideIndex == 2"
+      [selectedUser]="selectedUser"
+      (userUpdate)="updateUser($event)">
+    </app-edit-user>
+  </aside>
+</div>

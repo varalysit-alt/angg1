@@ -1,0 +1,90 @@
+<div class="admin-page">
+  <header>Управление администраторами</header>
+
+  <div class="admin-layout">
+    <div class="table-container">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Логин</th>
+            <th>Дата рождения</th>
+            <th>Статус</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let admin of admins"
+            [class.row-selected]="selectedAdmin?.admin_id === admin.admin_id"
+            (click)="selectAdmin(admin)"
+          >
+            <td>{{ admin.admin_id }}</td>
+            <td>{{ admin.admin_login }}</td>
+            <td>{{ admin.admin_birth_date | date:'dd.MM.yyyy' }}</td>
+            <td>
+              <span [class]="admin.is_active_admin ? 'status-active' : 'status-blocked'">
+                {{ admin.is_active_admin ? 'Активен' : 'Блок' }}
+              </span>
+            </td>
+            <td>
+              <button type="button" class="btn-delete" (click)="deleteAdmin(admin, $event)">
+                Удалить
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-container">
+      <div class="form-card">
+        <h3>{{ selectedAdmin ? 'Редактировать администратора' : 'Новый администратор' }}</h3>
+
+        <form [formGroup]="addAdminForm" (ngSubmit)="selectedAdmin ? saveAdmin() : addNewAdmin()">
+
+          <div class="input-group">
+            <input type="text" placeholder="Логин" formControlName="admin_login">
+            <small class="error" *ngIf="getFieldErrors('admin_login')">Введите логин (мин. 2 симв.)</small>
+          </div>
+
+          <div class="input-group">
+            <input
+              type="password"
+              [placeholder]="selectedAdmin ? 'Новый пароль (необязательно)' : 'Пароль'"
+              formControlName="admin_password"
+            >
+            <small class="error" *ngIf="getFieldErrors('admin_password')">Пароль от 6 символов</small>
+          </div>
+
+          <div class="input-group">
+            <label>Дата рождения</label>
+            <input type="date" formControlName="admin_birth_date">
+          </div>
+
+          <label class="checkbox-row">
+            <input type="checkbox" formControlName="is_active_admin">
+            <span>Активный аккаунт</span>
+          </label>
+
+          <div class="btn-group">
+            <button type="submit" [disabled]="addAdminForm.invalid || isLoading">
+              {{ isLoading ? 'Сохранение...' : (selectedAdmin ? 'Сохранить' : 'Добавить') }}
+            </button>
+
+            <button
+              *ngIf="selectedAdmin"
+              type="button"
+              class="btn-cancel"
+              (click)="cancelEdit()"
+            >
+              Отмена
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,21 @@
+z.wrapper {
+    position: relative;
+
+  }
+  
+  .layout {
+    display: flex;
+    flex-direction: row;
+    width:100vw;
+    /* height:85vh; */
+  }
+  
+  main {
+    position: relative;
+    flex-grow: 1;
+    padding: 1rem;
+  }
+
+  .main-sidebar{
+    min-width: 15rem;
+  }

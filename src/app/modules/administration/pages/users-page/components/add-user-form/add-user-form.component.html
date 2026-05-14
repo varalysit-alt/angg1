@@ -1,0 +1,63 @@
+<header>Добавить пользователя</header>
+<main>
+  
+  <form [formGroup]='addUserForm' (ngSubmit)='addNewUser()'>
+    <div>
+      <input type='text' placeholder='Логин' formControlName='userLogin' [ngClass]="{ invalid: getFieldErrors('userLogin') }" />
+      <div *ngIf="getFieldErrors('userLogin')">
+        <small *ngIf="getFieldErrors('userLogin')?.['required']">Логин обязателен<br></small>
+        <small *ngIf="getFieldErrors('userLogin')?.['minlength']">Логин должен быть не менее 2 символов<br></small>
+        <small *ngIf="getFieldErrors('userLogin')?.['pattern']">Логин должен состоять из латинских строчных символов<br></small>
+      </div>
+    </div>
+    <div>
+      <input type='text' placeholder='Пароль' formControlName='userPassword' [ngClass]="{ invalid: getFieldErrors('userPassword') }" />
+      <div *ngIf="getFieldErrors('userPassword')">
+        <small *ngIf="getFieldErrors('userPassword')?.['required']">Пароль обязателен</small>
+        <small *ngIf="getFieldErrors('userPassword')?.['minlength']">Пароль должен составлять минимум 6 символов<br></small>
+        <small *ngIf="getFieldErrors('userPassword')?.['pattern']">Пароль должен состоять из латинских символов и цифр<br></small>
+      </div>
+    </div>
+    <div>
+      <input type="checkbox" formControlName="userEnabled" />
+    </div>
+    <div>
+      <input type='text' placeholder='Имя' formControlName='userFirstName' [ngClass]="{ invalid: getFieldErrors('userFirstName') }" />
+      <div *ngIf="getFieldErrors('userFirstName')">
+        <small *ngIf="getFieldErrors('userFirstName')?.['required']">Имя обязательно<br></small>
+        <small *ngIf="getFieldErrors('userFirstName')?.['pattern']">В имени не должно быть цифр<br></small>
+      </div>
+    </div>
+    <div>
+      <input type='text' placeholder='Фамилия' formControlName='userLastName' [ngClass]="{ invalid: getFieldErrors('userLastName') }" />
+      <div *ngIf="getFieldErrors('userLastName')">
+        <small *ngIf="getFieldErrors('userLastName')?.['required']">Фамилия обязательна</small>
+        <small *ngIf="getFieldErrors('userLastName')?.['pattern']">В фамилии не должно быть цифр<br></small>
+      </div>
+    </div>
+    <div>
+      <input type='text' placeholder='Отчество' formControlName='userPatronymic' [ngClass]="{ invalid: getFieldErrors('userPatronymic') }" required />
+      <div *ngIf="getFieldErrors('userPatronymic')">
+        <small *ngIf="getFieldErrors('userPatronymic')?.['required']">Отчество обязательно</small>
+        <small *ngIf="getFieldErrors('userPatronymic')?.['pattern']">В отчестве не должно быть цифр<br></small>
+      </div>
+    </div>
+    <div>
+      <input type='date' placeholder='Дата рождения' formControlName='userBirthday' [ngClass]="{ invalid: getFieldErrors('userBirthday') }" required />
+      <div *ngIf="getFieldErrors('userBirthday')">
+        <small *ngIf="getFieldErrors('userBirthday')?.['required']">Дата рождения обязательна</small>
+      </div>
+    </div>
+    <label>
+      <input
+        type="checkbox" formControlName="isAdmin">
+      Админ
+    </label>
+    <label>
+      <input
+        type="checkbox" formControlName="isStudent">
+      Студент
+    </label>
+    <button type='submit' [disabled]='addUserForm.invalid'>Добавить</button>
+  </form>
+</main>

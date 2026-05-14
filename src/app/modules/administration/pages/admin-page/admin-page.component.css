@@ -1,0 +1,148 @@
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid var(--block-border-color);
+}
+
+.admin-layout {
+  display: flex;
+  padding: 20px;
+  gap: 30px;
+  flex: 1;
+}
+
+.table-container {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 2px solid var(--block-border-color);
+  color: #888;
+}
+
+.admin-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--block-border-color);
+}
+
+.admin-table tbody tr {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.admin-table tbody tr:hover td {
+  background-color: rgba(63, 81, 181, 0.1);
+}
+
+.admin-table tbody tr.row-selected td {
+  background-color: rgba(63, 81, 181, 0.2);
+}
+
+.status-active  { color: #4caf50; font-weight: bold; }
+.status-blocked { color: #f44336; font-weight: bold; }
+
+.form-container {
+  width: 320px;
+}
+
+.form-card {
+  background: var(--block-child-background);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--block-border-color);
+}
+
+.form-card h3 {
+  margin-bottom: 16px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.input-group input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--block-child-border-color);
+  color: var(--text-color);
+  padding: 8px 0;
+  outline: none;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  background: var(--color-indigo-500);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 1px solid var(--block-child-border-color) !important;
+  color: var(--text-color);
+}
+
+.error {
+  color: #ff4d4d;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.btn-delete {
+  flex: unset;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #f44336 !important;
+  color: #f44336;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.btn-delete:hover {
+  background: rgba(244, 67, 54, 0.1);
+}
